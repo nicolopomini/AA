@@ -2,6 +2,7 @@
 import pandas as pd
 from sklearn import tree
 import matplotlib.pyplot as plt
+import re
 
 col_names = []	#contiene i nomi delle colonne
 #leggo i nomi delle colonne dal file adult.names
@@ -34,6 +35,12 @@ accuracies = []
 for depth in depths:
 	classifier = tree.DecisionTreeClassifier(max_depth = depth)
 	classifier.fit(X_t,y_t)
+	
+	#creo un file che descrive l'albero di decisione
+	description = tree.export_graphviz(classifier, out_file = None)
+	description = re.sub(r'X\[([0-9]+)\]', lambda match: X_t.columns[int(match.group(1))], description)
+	with open("adult" + str(depth) + ".dot",'w') as f:
+		f.write(description)
 
 	y_p = classifier.predict(X_v)
 	accuracy = sum(y_p == y_v) / float(len(y_v))		#accuratezza del modello

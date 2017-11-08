@@ -1,0 +1,8 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="marital-status_Married-civ-spouse <= 0.5\ngini = 0.3656\nsamples = 32561\nvalue = [24720, 7841]"] ;
+1 [label="gini = 0.1221\nsamples = 17585\nvalue = [16436, 1149]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="gini = 0.4943\nsamples = 14976\nvalue = [8284, 6692]"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}
